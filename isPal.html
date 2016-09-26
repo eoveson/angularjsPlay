@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+<form  name="myForm" novalidate>
+
+Enter string: <input type="text" name="inputPal" ng-model="strToCheck" is-palindrome>
+<br>
+String is {{isPalModel()}} a palindrome.
+
+</form>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+    $scope.isPalModel = function() {
+        return $scope.myForm.inputPal.$valid ? "" : "NOT";
+    }
+
+});
+
+app.directive('isPalindrome', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, element, attr, mCtrl) {
+      function myValidation(value) {
+          mCtrl.$setValidity('palindrome', isPalindrome(value));
+        return value;
+      }
+      mCtrl.$parsers.push(myValidation);
+    }
+  };
+});
+
+function isPalindrome(str)
+{
+    for (i=0, 
+    if (str == "foo")
+        return true;
+    return false;
+}
+</script>
+
+</body>
+</html>
+
