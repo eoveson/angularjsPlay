@@ -17,8 +17,6 @@ String is {{isPalModel()}} a palindrome.
 <script>
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
     $scope.isPalModel = function() {
         return $scope.myForm.inputPal.$valid ? "" : "NOT";
     }
@@ -40,10 +38,12 @@ app.directive('isPalindrome', function() {
 
 function isPalindrome(str)
 {
-    for (i=0, 
-    if (str == "foo")
-        return true;
-    return false;
+    for (i=0, j=str.length-1; i<j; i++,j--)
+    {
+        if (str[i] != str[j])
+            return false;
+    }
+    return true;
 }
 </script>
 
